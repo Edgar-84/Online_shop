@@ -1,11 +1,13 @@
-import braintree
-from django.shortcuts import render, redirect, get_object_or_404
-from orders.models import Order
-from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
-from django.conf import settings
-import weasyprint
 from io import BytesIO
+
+import braintree
+import weasyprint
+from django.conf import settings
+from django.core.mail import EmailMessage
+from django.shortcuts import render, redirect, get_object_or_404
+from django.template.loader import render_to_string
+
+from orders.models import Order
 
 
 def payment_process(request):
@@ -54,4 +56,4 @@ def payment_done(request):
 
 
 def payment_canceled(request):
-    return render(request, 'payment/canceled.html')
+    return render(request, 'payment/cancel.html')
