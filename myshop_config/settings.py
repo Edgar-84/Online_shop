@@ -1,6 +1,8 @@
 import os.path
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -45,6 +47,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'myshop_config.urls'
@@ -101,7 +105,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+)
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -140,3 +148,7 @@ Configuration.configure(
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
